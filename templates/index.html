@@ -1,0 +1,26 @@
+{% extends 'basis.html' %}
+{% block title %}ToDo{% endblock %}
+{% block content %}
+{#        <form method = "POST" action="{% url 'index' %}">#}
+{#            <font color="red" size="3">{{ message }}</font>#}
+{#            {{ url_form.as_p }}#}
+{#            <p><input type="submit" value="Short it!"></p>#}
+{#        </form>#}
+        <table border="1">
+            <tr>
+                <td>Status</td>
+                <td>Task</td>
+                <td>Actions</td>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.status }}</td>
+                <td>{{ task.task }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </table>
+    <a href="{% url 'add_task' %}">Add task</a>
+{% endblock %}

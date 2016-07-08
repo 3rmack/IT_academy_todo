@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1194783669">
+    <data-source source="LOCAL" name="Sqlite (Xerial) - todo.db" uuid="83cf6bff-2e1d-4fa4-a573-1047be8cff46">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/todo.db</jdbc-url>
+    </data-source>
+  </component>
+</project>
