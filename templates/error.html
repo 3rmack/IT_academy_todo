@@ -1,0 +1,8 @@
+{% extends 'basis.html' %}
+{% block title %}Error{% endblock %}
+{% block content %}
+
+    {{ message }}
+    <p><a href="{% url 'index' %}">Back</a></p>
+
+{% endblock %}

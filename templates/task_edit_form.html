@@ -1,0 +1,21 @@
+{% extends 'basis.html' %}
+{% block title %}Edit task{% endblock %}
+{% block content %}
+        <form method = "POST" action="{% url 'edit' %}">
+            <p>
+            Task name:
+            <input type="text" name="task" value="{{ task.task }}">
+            </p>
+            <p>
+            Finished:
+            {% if task.status == 1 %}
+                <input type="checkbox" name="status" checked>
+            {% else %}
+                <input type="checkbox" name="status">
+            {% endif %}
+            </p>
+{#            <p><input type="checkbox" name="status" value="{{ task.status }}"></p>#}
+            <input type="hidden" name="id" value="{{ task.id }}">
+            <p><input type="submit" value="Save"></p>
+        </form>
+{% endblock %}
