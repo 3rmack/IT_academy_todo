@@ -30,3 +30,51 @@ class ToDoTest(TestCase):
         q_data = Tasks.objects.filter().last()
         self.assertEquals(q_data.task, data_post['task'])
         self.assertEquals(q_data.status, True)
+
+    def test_ok_move_up_task(self):
+        data_posts = [
+            {'task': 'test_task1', 'status': False, 'order': 1},
+            {'task': 'test_task2', 'status': True, 'order': 2}
+        ]
+        for data_post in data_posts:
+            self.client.post('/add_task/', data_post)
+        data_get = {'order': 2, 'type': 'up'}
+        self.client.get('/updown/', data_get)
+        q_data = Tasks.objects.get(id=1)
+        self.assertEquals(q_data.order, 2)
+
+    def test_ok_move_down_task(self):
+        data_posts = [
+            {'task': 'test_task1', 'status': False, 'order': 1},
+            {'task': 'test_task2', 'status': True, 'order': 2}
+        ]
+        for data_post in data_posts:
+            self.client.post('/add_task/', data_post)
+        data_get = {'order': 1, 'type': 'down'}
+        self.client.get('/updown/', data_get)
+        q_data = Tasks.objects.get(id=1)
+        self.assertEquals(q_data.order, 2)
+
+    def test_ok_move_up_first_task(self):
+        data_posts = [
+            {'task': 'test_task1', 'status': False, 'order': 1},
+            {'task': 'test_task2', 'status': True, 'order': 2}
+        ]
+        for data_post in data_posts:
+            self.client.post('/add_task/', data_post)
+        data_get = {'order': 1, 'type': 'up'}
+        self.client.get('/updown/', data_get)
+        q_data = Tasks.objects.get(id=1)
+        self.assertEquals(q_data.order, 1)
+
+    def test_ok_move_down_last_task(self):
+        data_posts = [
+            {'task': 'test_task1', 'status': False, 'order': 1},
+            {'task': 'test_task2', 'status': True, 'order': 2}
+        ]
+        for data_post in data_posts:
+            self.client.post('/add_task/', data_post)
+        data_get = {'order': 2, 'type': 'down'}
+        self.client.get('/updown/', data_get)
+        q_data = Tasks.objects.get(id=2)
+        self.assertEquals(q_data.order, 2)
