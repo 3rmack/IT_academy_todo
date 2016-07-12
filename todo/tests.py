@@ -22,18 +22,11 @@ class ToDoTest(TestCase):
         q_data = Tasks.objects.filter()
         self.assertEquals(q_data.count(), 0)
 
-    # def test_ok_edit_task(self):
-    #     data = {'task': 'test_task1', 'status': False, 'order': 1},
-    #     self.client.post('/add_task/', data)
-    #     data_post = {'status': 'on', 'task': 'changed_test_task'}
-    #     self.client.post('/edit/', data_post)
-    #     q_data =
-    #
-    #     q_data.task = 'changed_test_task'
-    #     q_data.status = True
-    #     q_data.order = 2
-    #     q_data.save()
-    #     q_data_changed = Tasks.objects.filter().last()
-    #     self.assertEquals(q_data_changed.task, 'changed_test_task')
-    #     self.assertEquals(q_data_changed.status, True)
-    #     self.assertEquals(q_data_changed.order, 2)
+    def test_ok_edit_task(self):
+        data = {'task': 'test_task1', 'status': False, 'order': 1}
+        self.client.post('/add_task/', data)
+        data_post = {'status': 'on', 'task': 'changed_test_task', 'id': 1}
+        self.client.post('/edit/', data_post)
+        q_data = Tasks.objects.filter().last()
+        self.assertEquals(q_data.task, data_post['task'])
+        self.assertEquals(q_data.status, True)
